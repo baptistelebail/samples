@@ -20,6 +20,24 @@ public final class JdbcAccountRepository implements AccountRepository {
     }
 
     @Override
+    public Set<Account> findAll() {
+        try (Connection connection = dataSource.getConnection()) {
+            try (Statement statement = connection.createStatement()) {
+                Set<Account> accounts = new HashSet<>();
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM account");
+
+                while (resultSet.next()) {
+                    accounts.add(fromResultSet(resultSet));
+                }
+
+                return accounts;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public Optional<Account> findByUsername(String username) {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM account WHERE username = ?")) {

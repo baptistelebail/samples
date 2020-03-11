@@ -24,7 +24,7 @@ public final class AccountRepositoryTest {
     public SqlFixture sqlFixture = new SqlFixture(sqlMemoryDatabase,
             Operations.sequenceOf(
                     SharedFixtures.deleteAccounts(),
-                    SharedFixtures.adminAccount()
+                    SharedFixtures.insertDefaultAccounts()
             )
     );
 
@@ -34,22 +34,25 @@ public final class AccountRepositoryTest {
     }
 
     @Test
-    void shouldFindAccountByUsername() {
-        Account expectedAccount = new Account("a288fb96-8155-4537-b714-c6098131cee3", "admin", true);
+    void shouldFindAllAccounts() {
+        Set<Account> accounts = accountRepository.findAll();
 
+        Assertions.assertThat(accounts).containsOnly(SharedFixtures.adminAccount, SharedFixtures.publisherAccount);
+    }
+
+    @Test
+    void shouldFindAccountByUsername() {
         Optional<Account> maybeAdminAccount = accountRepository.findByUsername("admin");
 
-        Assertions.assertThat(maybeAdminAccount).contains(expectedAccount);
+        Assertions.assertThat(maybeAdminAccount).contains(SharedFixtures.adminAccount);
     }
 
     @Test
     void shouldFindInactiveAccounts() {
-        sqlFixture.inject(CustomFixtures.accountJohnDoe());
-
-        Account johnDoeAccount = new Account("59b2c4d8-75f8-4ef0-8e2e-f577da66182a", "johndoe", false);
+        sqlFixture.inject(CustomFixtures.insertJohnDoeAccount());
 
         Set<Account> inactiveAccounts = accountRepository.findInactives();
 
-        Assertions.assertThat(inactiveAccounts).containsOnly(johnDoeAccount);
+        Assertions.assertThat(inactiveAccounts).containsOnly(CustomFixtures.johnDoeAccount);
     }
 }

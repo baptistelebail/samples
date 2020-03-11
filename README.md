@@ -1,2 +1,2 @@
 # Samples
-Code samples for my blog https://medium.com/@baptistelebail
+Code samples for my [blog](https://blog.blebail.com)

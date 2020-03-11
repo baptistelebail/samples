@@ -30,6 +30,8 @@ public final class AccountRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        // Here JdbcAccountRepository is a plain simple implementation of AccountRepository,
+        // nothing interesting in the context of this post
         accountRepository = new JdbcAccountRepository(sqlMemoryDatabase.dataSource());
     }
 

@@ -46,10 +46,10 @@ public final class AccountRepositoryTest {
     void shouldFindInactiveAccounts() {
         sqlFixture.inject(CustomFixtures.accountJohnDoe());
 
-        Account johndoeAccount = new Account("59b2c4d8-75f8-4ef0-8e2e-f577da66182a", "johndoe", false);
+        Account johnDoeAccount = new Account("59b2c4d8-75f8-4ef0-8e2e-f577da66182a", "johndoe", false);
 
         Set<Account> inactiveAccounts = accountRepository.findInactives();
 
-        Assertions.assertThat(inactiveAccounts).containsOnly(johndoeAccount);
+        Assertions.assertThat(inactiveAccounts).containsOnly(johnDoeAccount);
     }
 }

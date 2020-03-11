@@ -1,7 +1,0 @@
-{
-    "paths" : {
-        "app": "./app/", 
-        "assets": "./assets/",
-        "build": "./dist/"
-    }
-}

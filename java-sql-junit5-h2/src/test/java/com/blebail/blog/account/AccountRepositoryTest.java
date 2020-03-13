@@ -4,7 +4,6 @@ import com.blebail.blog.fixtures.CustomFixtures;
 import com.blebail.blog.fixtures.SharedFixtures;
 import com.blebail.blog.fixtures.SqlFixture;
 import com.blebail.blog.fixtures.SqlMemoryDatabase;
-import com.ninja_squad.dbsetup.Operations;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,12 +20,7 @@ public final class AccountRepositoryTest {
     public static SqlMemoryDatabase sqlMemoryDatabase = new SqlMemoryDatabase();
 
     @RegisterExtension
-    public SqlFixture sqlFixture = new SqlFixture(sqlMemoryDatabase,
-            Operations.sequenceOf(
-                    SharedFixtures.deleteAccounts(),
-                    SharedFixtures.insertDefaultAccounts()
-            )
-    );
+    public SqlFixture sqlFixture = new SqlFixture(sqlMemoryDatabase, SharedFixtures.insertDefaultAccounts());
 
     @BeforeEach
     void setUp() {
@@ -37,6 +31,8 @@ public final class AccountRepositoryTest {
 
     @Test
     void shouldFindAllAccounts() {
+        sqlFixture.readOnly();
+
         Set<Account> accounts = accountRepository.findAll();
 
         Assertions.assertThat(accounts).containsOnly(SharedFixtures.adminAccount, SharedFixtures.publisherAccount);
@@ -44,6 +40,8 @@ public final class AccountRepositoryTest {
 
     @Test
     void shouldFindAccountByUsername() {
+        sqlFixture.readOnly();
+
         Optional<Account> maybeAdminAccount = accountRepository.findByUsername("admin");
 
         Assertions.assertThat(maybeAdminAccount).contains(SharedFixtures.adminAccount);

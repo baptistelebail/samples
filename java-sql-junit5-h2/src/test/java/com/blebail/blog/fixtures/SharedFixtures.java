@@ -10,15 +10,14 @@ public final class SharedFixtures {
 
     public static final Account publisherAccount = new Account("22a73d0d-84ed-4c85-9688-facb309faa7e", "publisher", true);
 
-    public static Operation deleteAccounts() {
-        return Operations.deleteAllFrom("account");
-    }
-
     public static Operation insertDefaultAccounts() {
-        return Operations.insertInto("account")
-                .columns("id", "username", "active")
-                .values(adminAccount.id(), adminAccount.username(), adminAccount.isActive())
-                .values(publisherAccount.id(), publisherAccount.username(), publisherAccount.isActive())
-                .build();
+        return Operations.sequenceOf(
+                Operations.deleteAllFrom("account"),
+                Operations.insertInto("account")
+                        .columns("id", "username", "active")
+                        .values(adminAccount.id(), adminAccount.username(), adminAccount.isActive())
+                        .values(publisherAccount.id(), publisherAccount.username(), publisherAccount.isActive())
+                        .build()
+        );
     }
 }

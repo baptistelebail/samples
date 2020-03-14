@@ -21,8 +21,6 @@ public final class SqlMemoryDatabase implements BeforeAllCallback {
 
     private static final String DB_SCHEMA_SQL_PATH = "/db_schema.sql";
 
-    private static final String DATASOURCE_PROPERTY_PREFIX = "datasource.";
-
     private DataSource dataSource;
 
     @Override
@@ -36,9 +34,9 @@ public final class SqlMemoryDatabase implements BeforeAllCallback {
         properties.load(getClass().getResourceAsStream(APPLICATION_PROPERTIES_PATH));
 
         JdbcDataSource jdbcDataSource = new JdbcDataSource();
-        jdbcDataSource.setURL(properties.getProperty(DATASOURCE_PROPERTY_PREFIX + "url"));
-        jdbcDataSource.setUser(properties.getProperty(DATASOURCE_PROPERTY_PREFIX + "username"));
-        jdbcDataSource.setPassword(properties.getProperty(DATASOURCE_PROPERTY_PREFIX + "password"));
+        jdbcDataSource.setURL(properties.getProperty("datasource.url"));
+        jdbcDataSource.setUser(properties.getProperty("datasource.username"));
+        jdbcDataSource.setPassword(properties.getProperty("datasource.password"));
 
         dataSource = jdbcDataSource;
     }
@@ -47,7 +45,10 @@ public final class SqlMemoryDatabase implements BeforeAllCallback {
         Path schemaPath = Paths.get(getClass().getResource(DB_SCHEMA_SQL_PATH).toURI());
         String createSchemaSql = new String(Files.readAllBytes(schemaPath));
 
-        new DbSetup(new DataSourceDestination(dataSource), Operations.sql(createSchemaSql)).launch();
+        new DbSetup(
+                new DataSourceDestination(dataSource),
+                Operations.sql(createSchemaSql)
+        ).launch();
     }
 
     public DataSource dataSource() {

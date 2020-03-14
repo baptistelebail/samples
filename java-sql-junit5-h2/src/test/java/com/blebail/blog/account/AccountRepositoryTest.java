@@ -4,13 +4,11 @@ import com.blebail.blog.fixtures.CustomFixtures;
 import com.blebail.blog.fixtures.SharedFixtures;
 import com.blebail.blog.fixtures.SqlFixture;
 import com.blebail.blog.fixtures.SqlMemoryDatabase;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import java.util.Optional;
-import java.util.Set;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public final class AccountRepositoryTest {
 
@@ -20,7 +18,10 @@ public final class AccountRepositoryTest {
     public static SqlMemoryDatabase sqlMemoryDatabase = new SqlMemoryDatabase();
 
     @RegisterExtension
-    public SqlFixture sqlFixture = new SqlFixture(sqlMemoryDatabase, SharedFixtures.insertDefaultAccounts());
+    public SqlFixture sqlFixture = new SqlFixture(
+            sqlMemoryDatabase,
+            SharedFixtures.insertDefaultAccounts()
+    );
 
     @BeforeEach
     void setUp() {
@@ -33,26 +34,23 @@ public final class AccountRepositoryTest {
     void shouldFindAllAccounts() {
         sqlFixture.readOnly();
 
-        Set<Account> accounts = accountRepository.findAll();
-
-        Assertions.assertThat(accounts).containsOnly(SharedFixtures.adminAccount, SharedFixtures.publisherAccount);
+        assertThat(accountRepository.findAll())
+                .containsOnly(SharedFixtures.adminAccount, SharedFixtures.publisherAccount);
     }
 
     @Test
     void shouldFindAccountByUsername() {
         sqlFixture.readOnly();
 
-        Optional<Account> maybeAdminAccount = accountRepository.findByUsername("admin");
-
-        Assertions.assertThat(maybeAdminAccount).contains(SharedFixtures.adminAccount);
+        assertThat(accountRepository.findByUsername("admin"))
+                .contains(SharedFixtures.adminAccount);
     }
 
     @Test
     void shouldFindInactiveAccounts() {
         sqlFixture.inject(CustomFixtures.insertJohnDoeAccount());
 
-        Set<Account> inactiveAccounts = accountRepository.findInactives();
-
-        Assertions.assertThat(inactiveAccounts).containsOnly(CustomFixtures.johnDoeAccount);
+        assertThat(accountRepository.findInactives())
+                .containsOnly(CustomFixtures.johnDoeAccount);
     }
 }

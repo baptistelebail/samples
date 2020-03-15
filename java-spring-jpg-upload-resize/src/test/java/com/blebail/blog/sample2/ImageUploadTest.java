@@ -1,8 +1,10 @@
-package com.blebail.blog;
+package com.blebail.blog.sample2;
 
-import com.blebail.blog.sample2.Application;
+import com.blebail.blog.sample2.image.compression.JpgImageCompression;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,8 +27,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Application.class)
 public class ImageUploadTest {
 
+    @TempDir
+    public Path tempDir;
+
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private JpgImageCompression jpgImageCompression;
+
+    @BeforeEach
+    void setUp() {
+        jpgImageCompression.setImagesPathAsString(tempDir.toString());
+    }
 
     @Test
     public void shouldUploadResizeAndCompressJpgFile() throws Exception {
@@ -39,7 +52,7 @@ public class ImageUploadTest {
                 .file(sourceImageMultipartFile))
                 .andExpect(status().isOk());
 
-        Path expectedImagePath = Paths.get("/tmp/blebail-img-compress/myimage.jpg");
+        Path expectedImagePath = tempDir.resolve("myimage.jpg");
 
         assertThat(Files.exists(expectedImagePath))
                 .isTrue();
@@ -52,13 +65,12 @@ public class ImageUploadTest {
     public void shouldUploadResizeAndCompressJpgFromUrl() throws Exception {
         Path sourceImagePath = Paths.get(getClass().getResource("/image.jpg").toURI());
         URL sourceImageUrl = sourceImagePath.toUri().toURL();
-        ;
 
         mockMvc.perform(post("/image/upload/url/myimage")
                 .content(sourceImageUrl.toString()))
                 .andExpect(status().isOk());
 
-        Path expectedImagePath = Paths.get("/tmp/blebail-img-compress/myimage.jpg");
+        Path expectedImagePath = tempDir.resolve("myimage.jpg");
 
         assertThat(Files.exists(expectedImagePath))
                 .isTrue();

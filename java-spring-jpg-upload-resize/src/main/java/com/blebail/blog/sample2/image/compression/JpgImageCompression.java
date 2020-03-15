@@ -26,15 +26,19 @@ public class JpgImageCompression implements ImageCompression {
 
     private static final String JPG_EXTENSION = "jpg";
 
-    @Value("${images.path}")
     private String imagesPathAsString;
 
     private final ImageFormat format = new SquareHighlyCompressed();
 
+    @Value("${images.path}")
+    public void setImagesPathAsString(String imagesPathAsString) {
+        this.imagesPathAsString = imagesPathAsString;
+    }
+
     @Override
     public void compress(ImageSource imageSource, String imageName) {
         try {
-            Path imagesPath = Files.createDirectories(Paths.get(this.imagesPathAsString));
+            Path imagesPath = Files.createDirectories(Paths.get(imagesPathAsString));
             File imageSourceFile = imageSource.asFile();
             String compressedImageFileName = imageName + "." + JPG_EXTENSION;
             File compressedImageFile = imagesPath.resolve(compressedImageFileName)
@@ -72,10 +76,12 @@ public class JpgImageCompression implements ImageCompression {
     }
 
     private ImageWriter getWriter() {
-        Iterator<ImageWriter> imageWritersIterator = ImageIO.getImageWritersByFormatName(JPG_EXTENSION);
+        Iterator<ImageWriter> imageWritersIterator =
+                ImageIO.getImageWritersByFormatName(JPG_EXTENSION);
 
         if (!imageWritersIterator.hasNext()) {
-            throw new NoSuchElementException(String.format("Could not find an image writer for %s format", JPG_EXTENSION));
+            throw new NoSuchElementException(
+                    String.format("Could not find an image writer for %s format", JPG_EXTENSION));
         }
 
         return imageWritersIterator.next();

@@ -1,9 +1,9 @@
-package com.blebail.blog.account;
+package com.blebail.blog.sample1.account;
 
-import com.blebail.blog.fixtures.CustomFixtures;
-import com.blebail.blog.fixtures.SharedFixtures;
-import com.blebail.blog.fixtures.SqlFixture;
-import com.blebail.blog.fixtures.SqlMemoryDatabase;
+import com.blebail.blog.sample1.fixtures.CustomFixtures;
+import com.blebail.blog.sample1.fixtures.SharedFixtures;
+import com.blebail.blog.sample1.fixtures.SqlFixture;
+import com.blebail.blog.sample1.fixtures.SqlMemoryDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;

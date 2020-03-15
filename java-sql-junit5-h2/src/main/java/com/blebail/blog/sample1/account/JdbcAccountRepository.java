@@ -1,4 +1,4 @@
-package com.blebail.blog.account;
+package com.blebail.blog.sample1.account;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

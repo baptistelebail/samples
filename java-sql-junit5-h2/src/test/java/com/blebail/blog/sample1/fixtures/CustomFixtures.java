@@ -1,6 +1,6 @@
-package com.blebail.blog.fixtures;
+package com.blebail.blog.sample1.fixtures;
 
-import com.blebail.blog.account.Account;
+import com.blebail.blog.sample1.account.Account;
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.operation.Operation;
 

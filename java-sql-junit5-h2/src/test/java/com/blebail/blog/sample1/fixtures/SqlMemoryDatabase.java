@@ -1,4 +1,4 @@
-package com.blebail.blog.fixtures;
+package com.blebail.blog.sample1.fixtures;
 
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.Operations;

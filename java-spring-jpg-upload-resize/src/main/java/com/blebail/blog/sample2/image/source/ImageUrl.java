@@ -19,7 +19,7 @@ public final class ImageUrl implements ImageSource {
 
     @Override
     public File asFile() throws IOException {
-        File imageFile = Files.createTempFile("image-url", ".tmp")
+        File imageFile = Files.createTempFile("image_url_", ".tmp")
                 .toFile();
 
         FileOutputStream fileOutputStream = new FileOutputStream(imageFile);

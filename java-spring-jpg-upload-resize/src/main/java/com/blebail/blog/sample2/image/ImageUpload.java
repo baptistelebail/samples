@@ -6,6 +6,7 @@ import com.blebail.blog.sample2.image.source.ImageUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -26,15 +27,19 @@ public class ImageUpload {
         this.imageCompression = imageCompression;
     }
 
-    @PostMapping(value = "image/upload/file")
+    @PostMapping(value = "image/upload/file/{name}")
     @ResponseStatus(HttpStatus.OK)
-    public void uploadJpgImageFile(@RequestPart(value = "file") MultipartFile multipartFile) {
-        imageCompression.compress(new ImageMultipart(multipartFile));
+    public void uploadJpgImageFile(
+            @PathVariable("name") String name,
+            @RequestPart(value = "file") MultipartFile multipartFile) {
+        imageCompression.compress(new ImageMultipart(multipartFile), name);
     }
 
-    @PostMapping(value = "image/upload/url")
+    @PostMapping(value = "image/upload/url/{name}")
     @ResponseStatus(HttpStatus.OK)
-    public void uploadJpgImageUrl(@RequestBody String urlAsString) {
+    public void uploadJpgImageUrl(
+            @PathVariable("name") String name,
+            @RequestBody String urlAsString) {
         URL url;
 
         try {
@@ -43,6 +48,6 @@ public class ImageUpload {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        imageCompression.compress(new ImageUrl(url));
+        imageCompression.compress(new ImageUrl(url), name);
     }
 }

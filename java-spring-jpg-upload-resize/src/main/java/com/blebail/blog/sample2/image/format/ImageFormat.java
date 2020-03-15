@@ -6,7 +6,5 @@ public interface ImageFormat {
 
     int height();
 
-    String extension();
-
     float compression();
 }

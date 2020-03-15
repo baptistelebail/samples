@@ -1,6 +1,6 @@
 package com.blebail.blog.sample2.image.format;
 
-public final class HighlyCompressedSquareJpg implements ImageFormat {
+public final class SquareHighlyCompressed implements ImageFormat {
 
     @Override
     public int width() {
@@ -10,11 +10,6 @@ public final class HighlyCompressedSquareJpg implements ImageFormat {
     @Override
     public int height() {
         return 200;
-    }
-
-    @Override
-    public String extension() {
-        return "jpg";
     }
 
     @Override

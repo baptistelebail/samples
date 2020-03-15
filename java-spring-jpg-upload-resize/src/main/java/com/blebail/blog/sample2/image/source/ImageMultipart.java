@@ -17,7 +17,7 @@ public final class ImageMultipart implements ImageSource {
 
     @Override
     public File asFile() throws IOException {
-        File imageFile = Files.createTempFile("image-upload", ".tmp")
+        File imageFile = Files.createTempFile("image_upload_", ".tmp")
                 .toFile();
 
         multipartFile.transferTo(imageFile);

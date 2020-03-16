@@ -28,7 +28,7 @@ public class JpgImageCompression implements ImageCompression {
 
     private String imagesPathAsString;
 
-    private final ImageFormat format = new SquareHighlyCompressed();
+    private final ImageFormat format = new SquareHighlyCompressed(200);
 
     @Value("${images.path}")
     public void setImagesPathAsString(String imagesPathAsString) {

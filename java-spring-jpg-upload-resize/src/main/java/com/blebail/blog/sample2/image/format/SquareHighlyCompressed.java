@@ -2,14 +2,20 @@ package com.blebail.blog.sample2.image.format;
 
 public final class SquareHighlyCompressed implements ImageFormat {
 
+    private final int size;
+
+    public SquareHighlyCompressed(int size) {
+        this.size = size;
+    }
+
     @Override
     public int width() {
-        return 200;
+        return size;
     }
 
     @Override
     public int height() {
-        return 200;
+        return size;
     }
 
     @Override

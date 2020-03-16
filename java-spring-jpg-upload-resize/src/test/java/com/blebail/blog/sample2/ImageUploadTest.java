@@ -52,12 +52,12 @@ public class ImageUploadTest {
                 .file(sourceImageMultipartFile))
                 .andExpect(status().isOk());
 
-        Path expectedImagePath = tempDir.resolve("myimage.jpg");
+        Path compressedImagePath = tempDir.resolve("myimage.jpg");
 
-        assertThat(Files.exists(expectedImagePath))
+        assertThat(Files.exists(compressedImagePath))
                 .isTrue();
 
-        assertThat(Files.size(expectedImagePath))
+        assertThat(Files.size(compressedImagePath))
                 .isLessThan(Files.size(sourceImagePath));
     }
 
@@ -70,12 +70,12 @@ public class ImageUploadTest {
                 .content(sourceImageUrl.toString()))
                 .andExpect(status().isOk());
 
-        Path expectedImagePath = tempDir.resolve("myimage.jpg");
+        Path compressedImagePath = tempDir.resolve("myimage.jpg");
 
-        assertThat(Files.exists(expectedImagePath))
+        assertThat(Files.exists(compressedImagePath))
                 .isTrue();
 
-        assertThat(Files.size(expectedImagePath))
+        assertThat(Files.size(compressedImagePath))
                 .isLessThan(Files.size(sourceImagePath));
     }
 

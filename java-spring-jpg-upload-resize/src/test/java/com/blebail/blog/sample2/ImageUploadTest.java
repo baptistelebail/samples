@@ -31,10 +31,10 @@ public class ImageUploadTest {
     public Path tempDir;
 
     @Autowired
-    private MockMvc mockMvc;
+    public MockMvc mockMvc;
 
     @Autowired
-    private JpgImageCompression jpgImageCompression;
+    public JpgImageCompression jpgImageCompression;
 
     @BeforeEach
     void setUp() {

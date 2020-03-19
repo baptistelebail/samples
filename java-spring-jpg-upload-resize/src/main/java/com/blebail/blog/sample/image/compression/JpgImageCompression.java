@@ -1,7 +1,7 @@
-package com.blebail.blog.sample2.image.compression;
+package com.blebail.blog.sample.image.compression;
 
-import com.blebail.blog.sample2.image.format.SquareHighlyCompressed;
-import com.blebail.blog.sample2.image.source.ImageSource;
+import com.blebail.blog.sample.image.format.SquareHighlyCompressed;
+import com.blebail.blog.sample.image.source.ImageSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

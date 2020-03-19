@@ -1,4 +1,4 @@
-package com.blebail.blog.sample2.image.format;
+package com.blebail.blog.sample.image.format;
 
 public final class SquareHighlyCompressed implements ImageFormat {
 

@@ -1,4 +1,4 @@
-package com.blebail.blog.sample2.image.source;
+package com.blebail.blog.sample.image.source;
 
 import org.springframework.web.multipart.MultipartFile;
 

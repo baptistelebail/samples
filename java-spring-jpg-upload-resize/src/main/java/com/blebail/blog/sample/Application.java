@@ -1,4 +1,4 @@
-package com.blebail.blog.sample2;
+package com.blebail.blog.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

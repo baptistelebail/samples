@@ -1,6 +1,6 @@
-package com.blebail.blog.sample2;
+package com.blebail.blog.sample;
 
-import com.blebail.blog.sample2.image.compression.JpgImageCompression;
+import com.blebail.blog.sample.image.compression.JpgImageCompression;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

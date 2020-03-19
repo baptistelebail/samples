@@ -1,9 +1,9 @@
-package com.blebail.blog.sample1.account;
+package com.blebail.blog.sample.account;
 
-import com.blebail.blog.sample1.fixtures.CustomFixtures;
-import com.blebail.blog.sample1.fixtures.SharedFixtures;
-import com.blebail.blog.sample1.fixtures.SqlFixture;
-import com.blebail.blog.sample1.fixtures.SqlMemoryDatabase;
+import com.blebail.blog.sample.fixtures.CustomFixtures;
+import com.blebail.blog.sample.fixtures.SharedFixtures;
+import com.blebail.blog.sample.fixtures.SqlFixture;
+import com.blebail.blog.sample.fixtures.SqlMemoryDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -35,7 +35,7 @@ public final class AccountRepositoryTest {
         sqlFixture.readOnly();
 
         assertThat(accountRepository.findAll())
-                .containsOnly(SharedFixtures.adminAccount, SharedFixtures.publisherAccount);
+                .containsOnly(SharedFixtures.adminAccount, SharedFixtures.userAccount);
     }
 
     @Test

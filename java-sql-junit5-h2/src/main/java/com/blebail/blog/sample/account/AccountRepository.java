@@ -1,4 +1,4 @@
-package com.blebail.blog.sample1.account;
+package com.blebail.blog.sample.account;
 
 import java.util.Optional;
 import java.util.Set;

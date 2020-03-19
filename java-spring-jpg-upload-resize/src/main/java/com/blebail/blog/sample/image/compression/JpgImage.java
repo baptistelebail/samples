@@ -1,6 +1,6 @@
-package com.blebail.blog.sample2.image.compression;
+package com.blebail.blog.sample.image.compression;
 
-import com.blebail.blog.sample2.image.format.ImageFormat;
+import com.blebail.blog.sample.image.format.ImageFormat;
 import org.imgscalr.Scalr;
 
 import javax.imageio.IIOImage;

@@ -1,8 +1,8 @@
-package com.blebail.blog.sample2.image;
+package com.blebail.blog.sample.image;
 
-import com.blebail.blog.sample2.image.compression.ImageCompression;
-import com.blebail.blog.sample2.image.source.ImageMultipart;
-import com.blebail.blog.sample2.image.source.ImageUrl;
+import com.blebail.blog.sample.image.compression.ImageCompression;
+import com.blebail.blog.sample.image.source.ImageMultipart;
+import com.blebail.blog.sample.image.source.ImageUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

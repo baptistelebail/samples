@@ -1,10 +1,10 @@
 package com.blebail.blog.sample.image.format;
 
-public final class SquareHighlyCompressed implements ImageFormat {
+public final class SquareCompressed implements ImageFormat {
 
     private final int size;
 
-    public SquareHighlyCompressed(int size) {
+    public SquareCompressed(int size) {
         this.size = size;
     }
 

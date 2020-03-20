@@ -1,6 +1,6 @@
 package com.blebail.blog.sample.image.compression;
 
-import com.blebail.blog.sample.image.format.SquareHighlyCompressed;
+import com.blebail.blog.sample.image.format.SquareCompressed;
 import com.blebail.blog.sample.image.source.ImageSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -31,7 +31,7 @@ public class JpgImageCompression implements ImageCompression {
 
             File imageSourceFile = imageSource.asFile();
 
-            new JpgImage(imageSourceFile, new SquareHighlyCompressed(200))
+            new JpgImage(imageSourceFile, new SquareCompressed(200))
                     .compressTo(compressedImageFile);
 
             imageSourceFile.delete();

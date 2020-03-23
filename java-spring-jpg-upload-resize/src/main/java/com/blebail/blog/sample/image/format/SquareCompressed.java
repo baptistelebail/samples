@@ -20,6 +20,6 @@ public final class SquareCompressed implements ImageFormat {
 
     @Override
     public float compression() {
-        return 0.90f;
+        return 0.50f;
     }
 }

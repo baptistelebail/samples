@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public final class HtmlSanitizationPolicyTest {
 
     @Test
-    public void shouldNotAllowLinksOrJavaScriptOnStrictMode() {
+    public void shouldNotAllowLinksOrJavaScriptOnStrictPolicy() {
         String text = "Text with <a href=\"https://example.com\">a link</a> " +
                 "and<script>alert('javascript');</script>";
 
@@ -26,14 +26,14 @@ public final class HtmlSanitizationPolicyTest {
             "An <img src=\"https://example.com/img.jpg\" width=\"200\" />",
             "A <a href=\"https://example.com\" rel=\"nofollow\">link</a>"
     })
-    public void shouldAllowCommonArticleElementsOnArticleMode(String text) {
+    public void shouldAllowCommonArticleElementsOnArticlePolicy(String text) {
         String sanitized = HtmlSanitizationPolicy.ARTICLE.sanitize(text);
 
         assertThat(sanitized).isEqualTo(text);
     }
 
     @Test
-    public void shouldAllowMyElementOnCustomMode() {
+    public void shouldAllowMyElementOnCustomPolicy() {
         String text = "Text with <my-element>Mine</my-element>";
 
         String sanitized = HtmlSanitizationPolicy.CUSTOM.sanitize(text);

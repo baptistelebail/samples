@@ -26,7 +26,7 @@ class EnglishTitleTest {
 
     @Test
     public void shouldReplaceAmpersandWithAnd() {
-        assertThat(new EnglishTitle("a simple & nice title").toUrlFriendlyString())
-                .isEqualTo("a-simple-and-nice-title");
+        assertThat(new EnglishTitle("The title of a nice & simple post !").toUrlFriendlyString())
+                .isEqualTo("the-title-of-a-nice-and-simple-post");
     }
 }

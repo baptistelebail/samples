@@ -15,7 +15,8 @@ public class EnglishTitle implements SeoString {
 
     /**
      * Builds an url friendly string out of an original string, by :
-     * - deleting all non alphanumerical characters except '&'
+     * - removing all non alphanumerical characters except '&'
+     * - removing trailing spaces
      * - replacing whitespaces with a dash
      * - replacing & with 'and'
      */

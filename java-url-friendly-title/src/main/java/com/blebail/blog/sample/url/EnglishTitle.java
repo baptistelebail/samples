@@ -1,6 +1,5 @@
 package com.blebail.blog.sample.url;
 
-import com.google.common.base.Strings;
 import com.google.common.net.UrlEscapers;
 
 import java.util.Objects;
@@ -18,20 +17,16 @@ public class EnglishTitle implements SeoString {
      * - removing all non alphanumerical characters except '&'
      * - removing trailing spaces
      * - replacing whitespaces with a dash
-     * - replacing & with 'and'
+     * - replacing '&' with 'and'
      */
     @Override
     public String toUrlFriendlyString() {
-        String computedValue = "";
+        String urlFriendly = title.toLowerCase()
+                .replaceAll("[^a-zA-Z0-9 &]", "")
+                .trim()
+                .replace(' ', '-')
+                .replace("&", "and");
 
-        if (!Strings.isNullOrEmpty(title)) {
-            computedValue = title.toLowerCase()
-                    .replaceAll("[^a-zA-Z0-9 &]", "")
-                    .trim()
-                    .replace(' ', '-')
-                    .replace("&", "and");
-        }
-
-        return UrlEscapers.urlPathSegmentEscaper().escape(computedValue);
+        return UrlEscapers.urlPathSegmentEscaper().escape(urlFriendly);
     }
 }

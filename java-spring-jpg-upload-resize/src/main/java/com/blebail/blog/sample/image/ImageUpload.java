@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 @Controller
@@ -44,7 +45,8 @@ public class ImageUpload {
 
         try {
             url = new URL(urlAsString);
-        } catch (MalformedURLException e) {
+            url.toURI();
+        } catch (MalformedURLException| URISyntaxException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 

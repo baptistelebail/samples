@@ -7,7 +7,7 @@ import com.ninja_squad.dbsetup.operation.Operation;
 public final class CustomFixtures {
 
     public static final Account inactiveAccount =
-            new Account("59b2c4d8-75f8-4ef0-8e2e-f577da66182a", "johndoe", false);
+            new Account("inactive_id", "johndoe", false);
 
     public static Operation insertInactiveAccount() {
         return Operations.insertInto("account")

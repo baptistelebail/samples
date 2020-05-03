@@ -45,7 +45,7 @@ public final class SqlFixture implements BeforeEachCallback {
 
     /**
      * Avoids initializing the database in the next test.
-     * Use only if the test does not make any modification, such as insert, update or delete, to the database.
+     * Use only if the test does not make any modification, such as INSERT, UPDATE or DELETE, to the database.
      */
     public void readOnly() {
         dbSetupTracker.skipNextLaunch();
